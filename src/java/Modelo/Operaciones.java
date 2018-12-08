@@ -5,10 +5,16 @@
  */
 package Modelo;
 
+import java.util.List;
+
 /**
  *
  * @author russel
  */
-public class Operaciones {
-    
+public interface Operaciones {
+  public abstract String insertar(Object paramObject);
+  public abstract String eliminar(Object paramObject);
+  public abstract String modificar(Object paramObject);
+  public abstract List<?> consultar();
+  public abstract List<?> filtrar(String paramString1, String paramString2);
 }
