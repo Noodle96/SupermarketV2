@@ -16,7 +16,7 @@
     <body> <br><br><br><br>
     
     <center>
-        <h1>Pagina de Acceso Administrador</h1>
+        <h1>Pagina de Acceso ADMINISTRADOR</h1>
         <hr><br>
         <form action="serverpersona.do" method="POST">
             <input type="email" name="txtemailuser" placeholder="email user"  /><br>
