@@ -1,12 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Controlador;
 
+import Modelo.DAOUsuario;
+import Uml.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -31,16 +30,23 @@ public class SERVERUsuario extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet SERVERUsuario</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet SERVERUsuario at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+             DAOUsuario dao = new DAOUsuario();
+                Usuario u = new Usuario();
+                String respuesta = null;
+                RequestDispatcher rd = null;
+                if (request.getParameter("btnRegister") != null) {
+                    u.setName(request.getParameter("txtname"));
+                    u.setLastName(request.getParameter("txtlastname"));
+                    u.setEmail(request.getParameter("txtemail"));
+                    u.setPassword(request.getParameter("txtpassword"));
+                    Date date = new Date(System.currentTimeMillis());
+                    u.setCreated_at(date);
+                    u.setLastSesion(date);
+                    respuesta = dao.register(u);
+                    request.setAttribute("respuesta", respuesta);
+                    rd = request.getRequestDispatcher("registerUser.jsp");
+                }
+                rd.forward(request, response);
         }
     }
 

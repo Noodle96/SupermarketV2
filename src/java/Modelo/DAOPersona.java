@@ -183,13 +183,13 @@ public class DAOPersona
         
         while (rs2.next()) {
           if (dniPersonaActual.equals(rs2.getString("dniPersona_Persona_Administrador"))) {
-            Valor = "adminRecursos";
+            tr.Valor = "adminRecursos";
           }
         }
         
         while (rs3.next()) {
           if (dniPersonaActual.equals(rs3.getString("dniPersona_Persona_Administrador"))) {
-            Valor = "adminHumanidades";
+            tr.Valor = "adminHumanidades";
           }
         }
         
