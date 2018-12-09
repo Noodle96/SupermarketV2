@@ -20,8 +20,11 @@
         <form action="serverusuario.do"method="POST">
             <input type="text" name="txtname" placeholder="Nombre" /> <br>
             <input type="text" name="txtlastname" placeholder="LastName" /> <br>
+            <input type="text" name="txtfechaNac" placeholder="dd-mm-yyyy" /> <br>
             <input type="email" name="txtemail" placeholder="Email" /> <br>
             <input type="password" name="txtpassword" placeholder="password" /> <br>
+            <input type="text" name="txtsexo" placeholder="Sexo" /> <br>
+            <input type="text" name="txtdireccion" placeholder="Direccion" /> <br>
             <input type="submit" name="btnRegister" value="Register" /><br>
             <a href="index.jsp">Home</a>
             <a href="loginuser.jsp">Iniciar Session </a>

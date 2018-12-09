@@ -38,7 +38,7 @@
             sesion.setAttribute("emailM", em);
             sesion.setAttribute("tipoM", tipo);
             //"adminRecursos";"adminHumanidades"
-            System.out.println("dentro de != null");
+            //System.out.println("dentro de != null");
             if(tipo == "adminRecursos"){
                 response.sendRedirect("vistaAdminRecursos.jsp");
             }else if(tipo == "adminHumanidades"){
@@ -51,9 +51,6 @@
             sesion.invalidate();
             response.sendRedirect("index.jsp");
         }
-
-
-
     %>
     
     
