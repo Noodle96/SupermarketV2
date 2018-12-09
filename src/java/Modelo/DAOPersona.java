@@ -50,11 +50,7 @@ public class DAOPersona
   public String insertar(Object obj)
   {
     Persona p = (Persona)obj;
-    
-
     String sql = "INSERT INTO public.\"Persona\"(\n\t\"dniPersona\", names, apellido1, apellido2, \"emailPersona\",  telefono, \"fechaNacimiento\", direccion, sexo, \"idTienda_Tienda\")\n\tVALUES (?,?,?,?,?,?,?,?,?,?);";
-    
-
     String respuesta = null;
     try {
       Class.forName(db.getDriver());
@@ -103,9 +99,6 @@ public class DAOPersona
   public List<Persona> consultar()
   {
     List<Persona> datos = new ArrayList();
-    
-
-
     String sql = "select * from \"Persona\";";
     try {
       Class.forName(db.getDriver());

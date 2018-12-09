@@ -65,13 +65,13 @@ public class SERVERUsuario extends HttpServlet {
                 request.setAttribute("respuesta", respuesta);
                 rd = request.getRequestDispatcher("registerUser.jsp");
                 rd.forward(request, response);
-                    System.out.println(respuesta);
+                System.out.println(respuesta);
                 System.out.println("Registro de usuarios correctamente");
                 } catch (IOException | ParseException | ServletException e) {
                     System.out.println("Error detectado en ");
                     System.out.println(e);
                     request.getRequestDispatcher("registerUser.jsp").forward(request, response);
-                    out.print("<script>alert('"+e+"')</script>");
+                    out.print("<script>alert('no se registro')</script>");
 
                 }
             }else if(request.getParameter("btnIniciarSesionUser")!= null ){

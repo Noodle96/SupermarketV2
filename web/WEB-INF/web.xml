@@ -8,6 +8,14 @@
         <servlet-name>SERVERUsuario</servlet-name>
         <servlet-class>Controlador.SERVERUsuario</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SERVERTienda</servlet-name>
+        <servlet-class>Controlador.SERVERTienda</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SERVERAlmacen</servlet-name>
+        <servlet-class>Controlador.SERVERAlmacen</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SERVERPersona</servlet-name>
         <url-pattern>/serverpersona.do</url-pattern>
@@ -15,6 +23,14 @@
     <servlet-mapping>
         <servlet-name>SERVERUsuario</servlet-name>
         <url-pattern>/serverusuario.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SERVERTienda</servlet-name>
+        <url-pattern>/servertienda.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SERVERAlmacen</servlet-name>
+        <url-pattern>/serveralmacen.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

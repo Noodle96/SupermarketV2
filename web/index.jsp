@@ -13,7 +13,7 @@
         <link rel="stylesheet" href="css/styles.css"/>
         <title>Pagina de Inicio Supermarket</title>
     </head>
-    <body> <br><br><br><br>
+    <body> <br><br>
     
     <center>
         <h1>Pagina de Acceso ADMINISTRADOR</h1>

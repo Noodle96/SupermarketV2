@@ -45,7 +45,7 @@
         
         <nav class="menuCSS3 vista">
 		<ul>
-                    <li><a href="#">Tienda</a></li>
+                    <li><a href="tienda.jsp">Tienda</a></li>
                     <li><a href="#">Estacionamiento</a></li>
                     <li><a href="#">Agregar Personal Especifico</a>
                         <ul>
