@@ -10,6 +10,7 @@ package Uml;
  * @author russel
  */
 public class Tienda {
+    int idTienda;
     String nameTienda;
     String departamento;
     String provincia;
@@ -18,7 +19,8 @@ public class Tienda {
     
     public Tienda(){}
 
-    public Tienda(String nameTienda, String departamento, String provincia, String direccion, String telefono) {
+    public Tienda(int idTienda ,String nameTienda, String departamento, String provincia, String direccion, String telefono) {
+        this.idTienda = idTienda;
         this.nameTienda = nameTienda;
         this.departamento = departamento;
         this.provincia = provincia;
@@ -26,6 +28,16 @@ public class Tienda {
         this.telefono = telefono;
     }
 
+    public int getIdTienda() {
+        return idTienda;
+    }
+
+    public void setIdTienda(int idTienda) {
+        this.idTienda = idTienda;
+    }
+
+    
+    
     public String getNameTienda() {
         return nameTienda;
     }

@@ -49,7 +49,7 @@
                     <li><a href="#">Estacionamiento</a></li>
                     <li><a href="#">Agregar Personal Especifico</a>
                         <ul>
-                            <li><a href="#">Administrador Hum</a></li>
+                            <li><a href="AAdminHum.jsp">Administrador Hum</a></li>
                             <li><a href="#">Administrador Rec</a></li>
                             <li><a href="#">Personal </a></li>
                             <li><a href="#">Mercaderista</a></li>

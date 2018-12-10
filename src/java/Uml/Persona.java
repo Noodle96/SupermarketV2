@@ -20,6 +20,9 @@ public class Persona
   int idTienda;
   String password;
   
+  //de Admin Humanidades
+  String tipoContrato;
+  
   public Persona() {}
   
   public Persona(String dniPersona, String names, String image, String apellido1, String apellido2, String email, boolean isWorking, String telefono, Date fechaInicioCon, Date fechaFinalCon, Date fechaNacimiento, String direccion, String sexo, int idTienda, String password)
@@ -40,6 +43,17 @@ public class Persona
     this.idTienda = idTienda;
     this.password = password;
   }
+
+    public Persona(String dni, String names, String email, java.sql.Date fechaInicioC,
+            java.sql.Date fechaNac, String sexo, String nameCon) {
+        this.dniPersona = dni;
+        this.names = names;
+        this.email = email;
+        this.fechaInicioCon = fechaInicioC;
+        this.fechaNacimiento = fechaNac;
+        this.sexo = sexo;
+        this.tipoContrato = nameCon;
+    }
   
   public String getPassword() { return password; }
   
@@ -158,4 +172,14 @@ public class Persona
   public void setIdTienda(int idTienda) {
     this.idTienda = idTienda;
   }
+
+    public String getTipoContrato() {
+        return tipoContrato;
+    }
+
+    public void setTipoContrato(String tipoContrato) {
+        this.tipoContrato = tipoContrato;
+    }
+
+  
 }

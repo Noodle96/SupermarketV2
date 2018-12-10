@@ -4,6 +4,10 @@
     Author     : russel
 --%>
 
+<%@page import="Modelo.DAOTienda"%>
+<%@page import="Uml.Tienda"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -28,6 +32,50 @@
                 <br>
             </form>
         </center>
+    
+        <br>
+        <hr>
+        <br>
+        <center>
+            <table border="1">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Departamento</th>
+                    <th>Provincia</th>
+                    <th>Direccion</th>
+                    <th>Telefono</th>
+                </tr>
+            </thead>
+            <tbody>
+                <%
+                    //hacer un recorrido sobre el resultado
+                    // de la consulta
+                    List<Tienda> datos = new ArrayList();
+                    DAOTienda dao = new DAOTienda();
+                    datos = dao.consultarTienda();
+                    for(Tienda p : datos){
+                        %>
+                        <tr>
+                            <td><%= p.getIdTienda()%>  </td>
+                            <td> <%= p.getNameTienda() %> </td>
+                            <td> <%= p.getDepartamento() %>  </td>
+                            <td> <%= p.getProvincia() %>  </td>
+                            <td> <%=p.getDireccion() %>  </td>
+                            <td> <%= p.getTelefono() %> </td>
+                        </tr>
+                        <%
+                    }
+                %>
+            </tbody>
+        </table>
+        </center>
+    
+    
+    
+    
+ 
         
         <%
             if(request.getAttribute("Good") != null){

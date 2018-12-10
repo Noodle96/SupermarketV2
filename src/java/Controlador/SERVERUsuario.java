@@ -43,10 +43,10 @@ public class SERVERUsuario extends HttpServlet {
             if (request.getParameter("btnRegister") != null) {
                 try {
                     u.setName(request.getParameter("txtname"));
-                u.setLastName(request.getParameter("txtlastname"));
+                    u.setLastName(request.getParameter("txtlastname"));
 
                 String startDate= request.getParameter("txtfechaNac");
-                SimpleDateFormat sdf1 = new SimpleDateFormat("dd-mm-yyyy");
+                SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/YYYY");
                 java.util.Date date = sdf1.parse(startDate);
                 java.sql.Date sqlStartDate = new java.sql.Date(date.getTime()); 
                 System.out.println(sqlStartDate);

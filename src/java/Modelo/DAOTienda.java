@@ -13,6 +13,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -45,6 +47,40 @@ public class DAOTienda {
         }
         return false;
     }
+    
+    
+    
+    public List<Tienda> consultarTienda(){
+        List<Tienda> datos = new ArrayList();
+        String sql = "select * from \"Tienda\";";
+        try {
+          Class.forName(db.getDriver());
+          Connection conn = DriverManager.getConnection(
+            db.getUrl(), 
+            db.getUsuario(),
+            db.getContraseña()
+          );
+
+          PreparedStatement pst = conn.prepareStatement(sql);
+          ResultSet rs = pst.executeQuery();
+          while (rs.next()) {
+            datos.add(new Tienda(
+                rs.getInt("idTienda"), 
+                rs.getString("nameTienda"), 
+                rs.getString("departamentoT"), 
+                rs.getString("provinciaT"), 
+                rs.getString("direccionT"),
+                rs.getString("telefono")
+            ));
+          }
+        }
+        catch (ClassNotFoundException|SQLException e)
+        {
+          System.out.println(e);
+        }
+        return datos;
+  }
+    
     
     
     //other function
