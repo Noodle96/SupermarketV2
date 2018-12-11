@@ -1,11 +1,11 @@
 <%-- 
-    Document   : AAdminHum
-    Created on : 09/12/2018, 10:15:01 AM
+    Document   : AAdminRecursos
+    Created on : 10/12/2018, 06:55:36 PM
     Author     : russel
 --%>
 
-<%@page import="Modelo.DAOPersona"%>
 <%@page import="Uml.Persona"%>
+<%@page import="Modelo.DAOPersona"%>
 <%@page import="Uml.ContratoEspecial"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
@@ -15,14 +15,14 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Agregar Administrador de Humanidades</title>
+        <title>JSP Page</title>
     </head>
     <body>
         <pre>
-           Agregar Administrador de Humanidades  | Nivel Administrador Humanidades | <a href="vistaPersona.jsp">Home</a><hr>
+           Agregar Administrador de Recursos  | Nivel Administrador Humanidades | <a href="vistaPersona.jsp">Home</a><hr>
         </pre>
         <center>
-            <h1>Agregar Administrador de Humanidades</h1>
+            <h1>Agregar Administrador de Recursos</h1>
             <form action="serverpersona.do" method="POST">
                 <input type="text" name="txtdnipersona" placeholder="dniAdmin" /><br>
                 <input type="text" name="txtname" placeholder="nombre Admin" /><br>
@@ -42,17 +42,18 @@
                          datos = dao.consultar();
                          for(ContratoEspecial p : datos){
                     %>
-                            <option><%= p.getNombre() %></option>
+                    <option><%= p.getNombre()%></option>
                         <%
                           }          
                         %>
                 </select><br>
-                <input type="submit" name="btninsertarAdminHum" value="Insertar"/>
+                <input type="submit" name="btninsertarAdminRecursos" value="Insertar"/>
                 <br>
             </form>
         </center>
                 
                 
+        <!-- mostrando lo que se agrego de AdminRecursos-->
         <center>
             <table border="1">
             <thead>
@@ -72,7 +73,7 @@
                     // de la consulta
                     DAOPersona dao1 = new DAOPersona();
                     List<Persona> datos1 = new ArrayList();
-                    datos1 = dao1.consultarAdminHumanidades();
+                    datos1 = dao1.consultarAdminRecursos();
                     for(Persona p1 : datos1){
                         %>
                         <tr>
@@ -92,11 +93,15 @@
         </center>
                 
                 
-        <%
-            if(request.getAttribute("GoodbtninsertarAdminHum") != null){
+                
+                
+                
+                
+         <%
+            if(request.getAttribute("GoodbtninsertarAdminRec") != null){
                 out.print("<script>alert('Se ingreso Correctamente')</script>");
             }
-            else if(request.getAttribute("FailbtninsertarAdminHum") != null){
+            else if(request.getAttribute("FailbtninsertarAdminRec") != null){
                 String erL = (String)request.getAttribute("FailbtninsertarAdminHum");
                 //out.print("<script>alert('"+erL+"')</script>");
                 out.print("<script>alert('No se Ingreso con exito')</script>");

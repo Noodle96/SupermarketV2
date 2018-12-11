@@ -234,14 +234,50 @@ public class DAOPersona
   
   
   
-   public List<Persona> consultarAdminHumanidades(){
+  public boolean insertarAdminRecursos(Persona p,String nameC) throws ClassNotFoundException, SQLException{
+        //here
+        String sql = "select f_insertar_admin_Recursos(?,?,?,?,?,?,?,?,?,?,?, MD5('"+p.getNames()+"'),?);";
+        try {
+          Class.forName(db.getDriver());
+          Connection conn = DriverManager.getConnection(
+            db.getUrl(),
+            db.getUsuario(),
+            db.getContraseña()
+          );
+          CallableStatement cs = conn.prepareCall(sql);
+          cs.setString(1, p.getDniPersona());
+          cs.setString(2, p.getNames());
+          cs.setString(3, p.getApellido1());
+          cs.setString(4, p.getApellido2());
+          cs.setString(5, p.getEmail());
+          cs.setString(6, p.getTelefono());
+          cs.setDate(7, (Date) p.getFechaInicioCon());
+          cs.setDate(8, (Date) p.getFechaNacimiento());
+          cs.setString(9, p.getDireccion());
+          cs.setString(10, p.getSexo());
+          cs.setInt(11, p.getIdTienda());
+          cs.setString(12, nameC);
+          return cs.execute();
+        } catch (ClassNotFoundException|SQLException e) {
+            System.out.println("ERROR ENCONTRADO: ");
+            System.out.println(e);
+            //eR.r  = (SQLException) e;
+        }
+        return false;
+    }
+  
+  
+  
+  
+  
+   public List<Persona> consultarAdminRecursos(){
     List<Persona> datos = new ArrayList();
     String sql = "select PER.\"dniPersona\", PER.\"names\", PER.\"emailPersona\",\n" +
                 "PER.\"fechaInicioContrato\" , PER.\"fechaNacimiento\",\n" +
                 "PER.\"sexo\", ADM.\"nameContrato_ContratoEspecial\"\n" +
                 "from \"Persona\" as PER\n" +
                 "inner Join \"Administrador\" as ADM on PER.\"dniPersona\" = ADM.\"dniPersona_Persona\"\n" +
-                "inner join \"AdminHumanidades\" as ADMH on ADM.\"dniPersona_Persona\" = ADMH.\"dniPersona_Persona_Administrador\";";
+                "inner join \"AdminRecursos\" as ADMR on ADM.\"dniPersona_Persona\" = ADMR.\"dniPersona_Persona_Administrador\";";
     
     try {
       Class.forName(db.getDriver());
@@ -269,6 +305,41 @@ public class DAOPersona
     return datos;
   }
   
+   
+   public List<Persona> consultarAdminHumanidades(){
+    List<Persona> datos = new ArrayList();
+    String sql = "select PER.\"dniPersona\", PER.\"names\", PER.\"emailPersona\",\n" +
+                "PER.\"fechaInicioContrato\" , PER.\"fechaNacimiento\",\n" +
+                "PER.\"sexo\", ADM.\"nameContrato_ContratoEspecial\"\n" +
+                "from \"Persona\" as PER\n" +
+                "inner Join \"Administrador\" as ADM on PER.\"dniPersona\" = ADM.\"dniPersona_Persona\"\n" +
+                "inner join \"AdminHumanidades\" as ADMR on ADM.\"dniPersona_Persona\" = ADMR.\"dniPersona_Persona_Administrador\";";
+    
+    try {
+      Class.forName(db.getDriver());
+      Connection conn = DriverManager.getConnection(db
+        .getUrl(), db.getUsuario(), db.getContraseña());
+      
+      PreparedStatement pst = conn.prepareStatement(sql);
+      ResultSet rs = pst.executeQuery();
+      while (rs.next()) {
+        datos.add(new Persona(
+           rs.getString("dniPersona"),
+           rs.getString("names"),
+           rs.getString("emailPersona"),
+           rs.getDate("fechaInicioContrato"),
+           rs.getDate("fechaNacimiento"),
+           rs.getString("sexo"),
+           rs.getString("nameContrato_ContratoEspecial")   
+        ));
+      }
+    }
+    catch (ClassNotFoundException|SQLException e)
+    {
+      System.out.println(e);
+    }
+    return datos;
+  }
   
   
   

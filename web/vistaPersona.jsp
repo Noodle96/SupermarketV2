@@ -50,8 +50,8 @@
                     <li><a href="#">Agregar Personal Especifico</a>
                         <ul>
                             <li><a href="AAdminHum.jsp">Administrador Hum</a></li>
-                            <li><a href="#">Administrador Rec</a></li>
-                            <li><a href="#">Personal </a></li>
+                            <li><a href="AAdminRecursos.jsp">Administrador Rec</a></li>
+                            <li><a href="AAPersonal.jsp">Personal </a></li>
                             <li><a href="#">Mercaderista</a></li>
                         </ul>
                     </li>
@@ -63,7 +63,7 @@
                             </ul>
                     </li>
                     <li><a href="#">Contrato</a></li>
-                    <li><a href="#">Sistema Previsional</a></li>
+                    <li><a href="AASistemaPrevisional.jsp">Sistema Previsional</a></li>
 		</ul>
 	</nav>
     

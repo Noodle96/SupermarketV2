@@ -142,6 +142,66 @@ public class SERVERPersona extends HttpServlet {
                         System.out.println("ERROR  btninsertarAdminHum EN");
                         System.out.println(e);
                     }
+                }else if(request.getParameter("btninsertarAdminRecursos") != null){
+                    try {
+                        Persona p1 = new Persona();
+                        String dni = request.getParameter("txtdnipersona");
+                        String name = request.getParameter("txtname");
+                        String apell1 = request.getParameter("txtapellido1");
+                        String apell2 = request.getParameter("txtapellido2");
+                        String email = request.getParameter("txtemail");
+                        String telefono = request.getParameter("txttelefono");
+                        java.sql.Date dateFechaInicioContrato = new java.sql.Date(System.currentTimeMillis());
+                       
+                        String fechaN = request.getParameter("txtfechaNacimiento");
+                        SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/YYYY");
+                        java.util.Date date = sdf1.parse(fechaN);
+                        java.sql.Date sqlStartDate = new java.sql.Date(date.getTime()); 
+
+                        String direccion = request.getParameter("txtdireccion");
+                        String sexo = request.getParameter("txtsexo");
+                        String idTienda = request.getParameter("txtidtienda");
+                        String tipoC = request.getParameter("txttipocontrato");
+
+                        p.setDniPersona(dni);
+                        p.setNames(name);
+                        p.setApellido1(apell1);
+                        p.setApellido2(apell2);
+                        p.setEmail(email);
+                        p.setTelefono(telefono);
+                        p.setFechaInicioCon(dateFechaInicioContrato);
+                        p.setFechaNacimiento(sqlStartDate);
+                        p.setDireccion(direccion);
+                        p.setSexo(sexo);
+                        p.setIdTienda(Integer.parseInt(idTienda));
+                        //error eR = new error();
+                        if(dao.insertarAdminRecursos(p, tipoC)){
+                            request.setAttribute("GoodbtninsertarAdminRec", "Good");
+                            request.getRequestDispatcher("AAdminRecursos.jsp").forward(request, response);
+                        }
+                        else{
+                             //SQLException errort = eR.r;
+                             //String valueE = errort;
+                             request.setAttribute("FailbtninsertarAdminRec", "fail");
+                             request.getRequestDispatcher("AAdminRecursos.jsp").forward(request, response);
+                        }
+                        
+                    } catch (IOException | ClassNotFoundException | NumberFormatException | SQLException | ParseException | ServletException e) {
+                        System.out.println("ERROR  btninsertarRecu EN");
+                        System.out.println(e); // aqui te bota el error en especifico
+                        request.getRequestDispatcher("AAdminRecursos.jsp").forward(request, response);
+                         out.print("<script>alert('No se Ingreso con exito')</script>");
+                    }
+                
+                }else if(request.getParameter("btninsertarPersonal") != null){
+                    try {
+                        String nameSistema = request.getParameter("txttipocontrato");
+                        System.out.println("Estamos probando el valor que va a tomar el select");
+                        System.out.println(nameSistema);
+                    } catch (Exception e) {
+                        System.out.println("ERROR ENCONTRADO EN btninsertarPersonal");
+                        System.out.println(e);
+                    }
                 }
                 
                 
