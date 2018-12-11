@@ -52,7 +52,7 @@
                             <li><a href="AAdminHum.jsp">Administrador Hum</a></li>
                             <li><a href="AAdminRecursos.jsp">Administrador Rec</a></li>
                             <li><a href="AAPersonal.jsp">Personal </a></li>
-                            <li><a href="#">Mercaderista</a></li>
+                            <li><a href="AAMercaderista.jsp">Mercaderista</a></li>
                         </ul>
                     </li>
                         

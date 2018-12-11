@@ -240,6 +240,53 @@ public class SERVERPersona extends HttpServlet {
                         System.out.println("ERROR ENCONTRADO EN btninsertarPersonal");
                         System.out.println(e);
                     }
+                }else if(request.getParameter("btninsertarMercaderista") != null){
+                    try {
+                        Persona p1 = new Persona();
+                        String dni = request.getParameter("txtdnipersona");
+                        String name = request.getParameter("txtname");
+                        String apell1 = request.getParameter("txtapellido1");
+                        String apell2 = request.getParameter("txtapellido2");
+                        String email = request.getParameter("txtemail");
+                        String telefono = request.getParameter("txttelefono");
+                        java.sql.Date dateFechaInicioContrato = new java.sql.Date(System.currentTimeMillis());
+                       
+                        String fechaN = request.getParameter("txtfechaNacimiento");
+                        SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/YYYY");
+                        java.util.Date date = sdf1.parse(fechaN);
+                        java.sql.Date sqlStartDate = new java.sql.Date(date.getTime()); 
+
+                        String direccion = request.getParameter("txtdireccion");
+                        String sexo = request.getParameter("txtsexo");
+                        String idTienda = request.getParameter("txtidtienda");
+                        int idprov = Integer.parseInt(request.getParameter("idProveedor"));
+                        
+                        p.setDniPersona(dni);
+                        p.setNames(name);
+                        p.setApellido1(apell1);
+                        p.setApellido2(apell2);
+                        p.setEmail(email);
+                        p.setTelefono(telefono);
+                        p.setFechaInicioCon(dateFechaInicioContrato);
+                        p.setFechaNacimiento(sqlStartDate);
+                        p.setDireccion(direccion);
+                        p.setSexo(sexo);
+                        p.setIdTienda(Integer.parseInt(idTienda));
+                        if( dao.insertarMercaderista(p, idprov)){
+                            request.setAttribute("GoodbtninsertarMercaderista", "Good");
+                            request.getRequestDispatcher("AAMercaderista.jsp").forward(request, response);
+                        }
+                        else{
+                             //SQLException errort = eR.r;
+                             //String valueE = errort;
+                             request.setAttribute("FailbtninsertarMercaderista", "fail");
+                             request.getRequestDispatcher("AAMercaderista.jsp").forward(request, response);
+                        }
+                        
+                    } catch (IOException | ClassNotFoundException | NumberFormatException | SQLException | ParseException | ServletException e) {
+                        System.out.println("ERROR ENCONTRADO EN btninsertarMercaderista");
+                        System.out.println(e);
+                    }
                 }
                 
                 

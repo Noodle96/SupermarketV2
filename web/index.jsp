@@ -24,7 +24,7 @@
             <input type="submit" value="iniciarsesion"name="btnIniciarSesion" /><br>
         </form>
         <a href="registerUser.jsp" class = "user">User</a><br>
-        <a href="registerPersona.jsp" class="user">RegisterPersona</a>
+       <!-- <a href="registerPersona.jsp" class="user">RegisterPersona</a> -->
     </center>
     
     <%

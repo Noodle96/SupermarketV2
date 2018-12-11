@@ -301,6 +301,42 @@ public class DAOPersona
         return false;
     }
   
+    // insertar Mercaderista
+     public boolean insertarMercaderista(Persona p,int idProvee) throws ClassNotFoundException, SQLException{
+        //here
+        //   select * from  f_insertar_Mercaderista
+        //                    ('21','martinico','tito','tito','martinico@gmail.com','122345',
+        //                    '01-01-2018','23-05-1994','Los Martinales 345','M',1,MD5('martinico'),1);
+        String sql = "select f_insertar_Mercaderista(?,?,?,?,?,?,?,?,?,?,?, MD5('"+p.getNames()+"'),?);";
+        try {
+          Class.forName(db.getDriver());
+          Connection conn = DriverManager.getConnection(
+            db.getUrl(),
+            db.getUsuario(),
+            db.getContraseña()
+          );
+          CallableStatement cs = conn.prepareCall(sql);
+          cs.setString(1, p.getDniPersona());
+          cs.setString(2, p.getNames());
+          cs.setString(3, p.getApellido1());
+          cs.setString(4, p.getApellido2());
+          cs.setString(5, p.getEmail());
+          cs.setString(6, p.getTelefono());
+          cs.setDate(7, (Date) p.getFechaInicioCon());
+          cs.setDate(8, (Date) p.getFechaNacimiento());
+          cs.setString(9, p.getDireccion());
+          cs.setString(10, p.getSexo());
+          cs.setInt(11, p.getIdTienda());
+          cs.setInt(12, idProvee);
+          return cs.execute();
+        } catch (ClassNotFoundException|SQLException e) {
+            System.out.println("ERROR ENCONTRADO EN insertarMercaderista: ");
+            System.out.println(e);
+            //eR.r  = (SQLException) e;
+        }
+        return false;
+    }
+  
   
   
   
@@ -337,7 +373,39 @@ public class DAOPersona
          return datos;
     }
   
-  
+  //consultar Mercaderista
+   public List<Persona> consultarMercaderista() throws ClassNotFoundException, SQLException{
+        List<Persona> datos = new ArrayList();
+        String sql = "select * from reporteMercaderista();";
+        try {
+          Class.forName(db.getDriver());
+          Connection conn = DriverManager.getConnection(
+            db.getUrl(),
+            db.getUsuario(),
+            db.getContraseña()
+          );
+          CallableStatement cs = conn.prepareCall(sql);
+          ResultSet rs = cs.executeQuery();
+         while (rs.next()) {
+            datos.add(new Persona(
+               rs.getString("dni"),
+               rs.getString("nam"),
+               rs.getString("apell1"),
+               rs.getString("correo"),
+               rs.getDate("fechaic"),
+               rs.getDate("fechan"),
+               rs.getString("sex"),
+               rs.getString("nameProveedor")   
+            ));
+      }
+        } catch (ClassNotFoundException|SQLException e) {
+            System.out.println("ERROR ENCONTRADO: ");
+            System.out.println(e);
+            //eR.r  = (SQLException) e;
+        }
+         return datos;
+    }
+   
   
   
   

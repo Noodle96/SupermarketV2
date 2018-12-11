@@ -16,6 +16,10 @@
         <servlet-name>SERVERAlmacen</servlet-name>
         <servlet-class>Controlador.SERVERAlmacen</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SERVERProveedor</servlet-name>
+        <servlet-class>Controlador.SERVERProveedor</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SERVERPersona</servlet-name>
         <url-pattern>/serverpersona.do</url-pattern>
@@ -31,6 +35,10 @@
     <servlet-mapping>
         <servlet-name>SERVERAlmacen</servlet-name>
         <url-pattern>/serveralmacen.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SERVERProveedor</servlet-name>
+        <url-pattern>/serverproveedor.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
