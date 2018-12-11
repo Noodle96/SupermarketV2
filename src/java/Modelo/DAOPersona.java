@@ -269,6 +269,80 @@ public class DAOPersona
   
   
   
+  public boolean insertarPersonal(Persona p,int idSistema) throws ClassNotFoundException, SQLException{
+        //here
+        String sql = "select f_insertar_Personal(?,?,?,?,?,?,?,?,?,?,?, MD5('"+p.getNames()+"'),?);";
+        try {
+          Class.forName(db.getDriver());
+          Connection conn = DriverManager.getConnection(
+            db.getUrl(),
+            db.getUsuario(),
+            db.getContraseña()
+          );
+          CallableStatement cs = conn.prepareCall(sql);
+          cs.setString(1, p.getDniPersona());
+          cs.setString(2, p.getNames());
+          cs.setString(3, p.getApellido1());
+          cs.setString(4, p.getApellido2());
+          cs.setString(5, p.getEmail());
+          cs.setString(6, p.getTelefono());
+          cs.setDate(7, (Date) p.getFechaInicioCon());
+          cs.setDate(8, (Date) p.getFechaNacimiento());
+          cs.setString(9, p.getDireccion());
+          cs.setString(10, p.getSexo());
+          cs.setInt(11, p.getIdTienda());
+          cs.setInt(12, idSistema);
+          return cs.execute();
+        } catch (ClassNotFoundException|SQLException e) {
+            System.out.println("ERROR ENCONTRADO: ");
+            System.out.println(e);
+            //eR.r  = (SQLException) e;
+        }
+        return false;
+    }
+  
+  
+  
+  
+  
+   public List<Persona> consultarPersonal() throws ClassNotFoundException, SQLException{
+        List<Persona> datos = new ArrayList();
+        String sql = "select * from  reportePersonal()";
+        try {
+          Class.forName(db.getDriver());
+          Connection conn = DriverManager.getConnection(
+            db.getUrl(),
+            db.getUsuario(),
+            db.getContraseña()
+          );
+          CallableStatement cs = conn.prepareCall(sql);
+          ResultSet rs = cs.executeQuery();
+         while (rs.next()) {
+            datos.add(new Persona(
+               rs.getString("dni"),
+               rs.getString("nam"),
+               rs.getString("apell1"),
+               rs.getString("correo"),
+               rs.getDate("fechaic"),
+               rs.getDate("fechan"),
+               rs.getString("sex"),
+               rs.getString("namesiste")   
+            ));
+      }
+        } catch (ClassNotFoundException|SQLException e) {
+            System.out.println("ERROR ENCONTRADO: ");
+            System.out.println(e);
+            //eR.r  = (SQLException) e;
+        }
+         return datos;
+    }
+  
+  
+  
+  
+  
+  
+  
   
    public List<Persona> consultarAdminRecursos(){
     List<Persona> datos = new ArrayList();

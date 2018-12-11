@@ -19,6 +19,7 @@ public class Persona
   String sexo;
   int idTienda;
   String password;
+  String nameSistema;
   
   //de Admin Humanidades
   String tipoContrato;
@@ -53,6 +54,25 @@ public class Persona
         this.fechaNacimiento = fechaNac;
         this.sexo = sexo;
         this.tipoContrato = nameCon;
+    }
+    public Persona(String dni, String names,String apell1, String email, java.sql.Date fechaInicioC,
+            java.sql.Date fechaNac, String sexo, String namesiste) {
+        this.dniPersona = dni;
+        this.names = names;
+        this.apellido1 = apell1;
+        this.email = email;
+        this.fechaInicioCon = fechaInicioC;
+        this.fechaNacimiento = fechaNac;
+        this.sexo = sexo;
+        this.nameSistema = namesiste;
+    }
+
+    public String getNameSistema() {
+        return nameSistema;
+    }
+
+    public void setNameSistema(String nameSistema) {
+        this.nameSistema = nameSistema;
     }
   
   public String getPassword() { return password; }
